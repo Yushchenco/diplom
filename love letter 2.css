@@ -1,0 +1,491 @@
+#envelope {
+  position: relative;
+  width: 280px;
+  height: 180px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  margin-left: auto;
+  margin-right: auto;
+  top: 150px;
+  background-color: #1e3a5f; /* Warm romantic red */
+  box-shadow:
+    0 0 15px #00ffff,
+    0 0 40px #00ffff,
+    0 0 80px #0088ff;
+  /*box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);*/
+}
+body{
+  background:
+    radial-gradient(circle at center, #102040 0%, #050816 70%);
+  overflow:hidden;
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+
+  background-image:
+    radial-gradient(circle, #fff 1px, transparent 1px),
+    radial-gradient(circle, #00ffff 1px, transparent 1px),
+    radial-gradient(circle, #7df9ff 2px, transparent 2px);
+
+  background-size:
+    120px 120px,
+    200px 200px,
+    350px 350px;
+
+  animation:
+    starMove 40s linear infinite,
+    twinkle 4s ease-in-out infinite;
+
+  opacity:.8;
+  pointer-events:none;
+}
+
+@keyframes starMove{
+  from{
+    transform:translateY(0);
+  }
+  to{
+    transform:translateY(-300px);
+  }
+}
+
+@keyframes twinkle{
+  0%,100%{
+    opacity:.5;
+  }
+  50%{
+    opacity:1;
+  }
+}
+
+.front {
+  position: absolute;
+  width: 0;
+  height: 0;
+  z-index: 3;
+}
+
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+
+  background:
+    radial-gradient(circle,#00ffff 1px,transparent 2px);
+
+  background-size:250px 250px;
+
+  opacity:.25;
+
+  animation: hyperspace 8s linear infinite;
+
+  pointer-events:none;
+}
+
+@keyframes hyperspace{
+  from{
+    transform:scale(.8);
+  }
+  to{
+    transform:scale(2.5);
+  }
+}
+
+.flap {
+  border-left: 140px solid transparent;
+  border-right: 140px solid transparent;
+  border-bottom: 82px solid transparent;
+  /* a little smaller */
+  border-top: 98px solid #1e3a5f; /* Same romantic red */
+  /* a little larger */
+  transform-origin: top;
+  pointer-events: none;
+}
+.flap::after{
+  content:"graduation.py";
+  position:absolute;
+  top:-85px;
+  left:-45px;
+  color:white;
+  font-family:"JetBrains Mono", monospace;
+  font-size:14px;
+}
+.pocket {
+  border-left: 140px solid #294a73; /* Soft pinkish red for the pocket */
+  border-right: 140px solid #294a73;
+  border-bottom: 90px solid #3d6ea8; /* Lighter romantic red */
+  border-top: 90px solid transparent;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.letter {
+  position: relative;
+  background-color: #fff;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 90%;
+  top: 5%;
+  border-radius: 6px;
+  box-shadow: 0 2px 26px rgba(0, 0, 0, 0.12);
+  font-family: "Dancing Script", cursive;
+}
+
+.letter:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.words {
+  position: absolute;
+  left: 10%;
+  width: 80%;
+  height: 14%;
+  background-color: #ffe6e6; /* Light romantic tone */
+}
+
+.words.line1 {
+  top: 10%;
+  font-size: 0.5rem;
+  width: 20%;
+  height: 7%;
+  font-size: 0.7rem;
+}
+
+.words.line2 {
+  top: 30%;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.words.line3 {
+  top: 50%;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.words.line4 {
+  top: 70%;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.open .flap {
+  transform: rotateX(180deg);
+  transition: transform 0.4s ease, z-index 0.6s;
+  z-index: 1;
+}
+
+.close .flap {
+  transform: rotateX(0deg);
+  transition: transform 0.4s 0.6s ease, z-index 1s;
+  z-index: 5;
+}
+
+.close .letter {
+  transform: translateY(0px);
+  transition: transform 0.4s ease, z-index 1s;
+  z-index: 1;
+}
+
+.open .letter {
+  transform: translateY(-120px)
+  scale(1.05);
+  transition: transform 0.4s 0.6s ease, z-index 0.6s;
+  z-index: 2;
+  animation: hologram 2s infinite alternate;
+}
+@keyframes hologram{
+  from{
+    box-shadow:0 0 20px #00ffff;
+  }
+  to{
+    box-shadow:
+      0 0 40px #00ffff,
+      0 0 80px #0088ff;
+  }
+}
+.hearts {
+  position: absolute;
+  top: 90px;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.heart {
+  position: absolute;
+  bottom: 0;
+  right: 10%;
+  pointer-events: none;
+}
+
+.heart:before,
+.heart:after {
+  position: absolute;
+  content: "";
+  left: 50px;
+  top: 0;
+  width: 50px;
+  height: 80px;
+  background: #e60073; /* Deep romantic pink */
+  border-radius: 50px 50px 0 0;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+  pointer-events: none;
+}
+
+.heart:after {
+  left: 0;
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
+}
+
+.close .heart {
+  opacity: 0;
+  -webkit-animation: none;
+  animation: none;
+}
+
+.a1 {
+  left: 20%;
+  transform: scale(0.6);
+  opacity: 1;
+  -webkit-animation: slideUp 4s linear 1, sideSway 2s ease-in-out 4 alternate;
+  -moz-animation: slideUp 4s linear 1, sideSway 2s ease-in-out 4 alternate;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-animation-delay: 0.7s;
+  animation-delay: 0.7s;
+}
+
+.a2 {
+  left: 55%;
+  transform: scale(1);
+  opacity: 1;
+  -webkit-animation: slideUp 5s linear 1, sideSway 4s ease-in-out 2 alternate;
+  -moz-animation: slideUp 5s linear 1, sideSway 4s ease-in-out 2 alternate;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-animation-delay: 0.7s;
+  animation-delay: 0.7s;
+}
+
+.a3 {
+  left: 10%;
+  transform: scale(0.8);
+  opacity: 1;
+  -webkit-animation: slideUp 7s linear 1, sideSway 2s ease-in-out 6 alternate;
+  -moz-animation: slideUp 7s linear 1, sideSway 2s ease-in-out 6 alternate;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-animation-delay: 0.7s;
+  animation-delay: 0.7s;
+}
+
+@-webkit-keyframes slideUp {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: -600px;
+  }
+}
+@keyframes slideUp {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: -600px;
+  }
+}
+@-webkit-keyframes sideSway {
+  0% {
+    margin-left: 0px;
+  }
+  100% {
+    margin-left: 50px;
+  }
+}
+@keyframes sideSway {
+  0% {
+    margin-left: 0px;
+  }
+  100% {
+    margin-left: 50px;
+  }
+}
+body {
+  background-color: #f0e6f6; /* Soft lavender for a romantic, dreamy feel */
+}
+
+.envlope-wrapper {
+  height: 380px;
+}
+
+.reset {
+  text-align: center;
+}
+
+.reset button {
+  font-weight: 800;
+  font-style: normal;
+  transition: all 0.1s linear;
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: solid 2px #d9534f;
+  border-radius: 4px;
+  color: #d9534f;
+  display: inline-block;
+  font-size: 14px;
+  text-transform: uppercase;
+  margin: 5px;
+  padding: 10px;
+  line-height: 1em;
+  text-decoration: none;
+  min-width: 120px;
+  cursor: pointer;
+}
+
+.reset button:hover {
+  background-color: #d9534f;
+  color: #fff;
+}
+
+.letter {
+  position: relative;
+    background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.95),
+      rgba(180,220,255,.95)
+    );
+  backdrop-filter: blur(15px);
+  width: 90%;
+  height: 160px;
+  margin: 0 auto;
+  border-radius: 10px;
+  overflow-y: auto;
+}
+
+.letter-content {
+  padding: 15px;
+  text-align: center;
+  font-family: "JetBrains Mono", monospace;
+  /*font-family: "Dancing Script", cursive;*/
+}
+
+.letter-content h3 {
+  margin-bottom: 12px;
+  font-size: 1.4rem;
+}
+
+.letter-content p {
+  margin: 8px 0;
+  line-height: 1.5;
+  font-size: 0.9rem;
+  margin: 4px 0;
+}
+
+h3::after{
+  content:"|";
+  color:#00ffff;
+  animation: blink .8s infinite;
+}
+
+.signature {
+  margin-top: 15px;
+  font-size: 1rem;
+}
+
+.code-header{
+  background:#282c34;
+  color:#61dafb;
+  padding:8px 10px;
+  border-radius:8px;
+  margin-bottom:15px;
+  text-align:left;
+  font-size:12px;
+}
+
+.dot{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  display:inline-block;
+  margin-right:4px;
+}
+
+.red{background:#ff5f56;}
+.yellow{background:#ffbd2e;}
+.green{background:#27c93f;}
+
+.filename{
+  margin-left:10px;
+}
+
+.symbols{
+  position:absolute;
+  top:0;
+  width:100%;
+  text-align:center;
+  color:#61dafb;
+  font-size:24px;
+  font-weight:bold;
+}
+
+.symbols span{
+  margin:0 10px;
+}
+
+.envelope-label{
+  position:absolute;
+  top:15px;
+  left:50%;
+  transform:translateX(-50%);
+  color:white;
+  font-family:"JetBrains Mono", monospace;
+  font-size:14px;
+  z-index:10;
+}
+
+.envlope-wrapper::before{
+  content:"";
+  position:absolute;
+
+  width:500px;
+  height:500px;
+
+  left:50%;
+  top:50%;
+
+  transform:translate(-50%,-50%);
+
+  background:
+    radial-gradient(circle,
+      rgba(0,255,255,.25),
+      transparent 70%);
+
+  filter:blur(40px);
+
+  animation:pulseNebula 6s ease-in-out infinite;
+
+  z-index:-1;
+}
+
+@keyframes pulseNebula{
+  0%,100%{
+    transform:translate(-50%,-50%) scale(1);
+  }
+
+  50%{
+    transform:translate(-50%,-50%) scale(1.3);
+  }
+}
